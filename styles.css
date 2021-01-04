@@ -1,0 +1,86 @@
+            nav {
+                position: absolute;
+                left: 0;
+                border-bottom: 2px solid #ddd;
+            }
+            
+            nav header {
+                position: fixed;
+                left: 0;
+                background-color: white;
+                z-index: 10;
+                width: auto;
+            }
+            
+            nav header h1 {
+                padding-left: 1rem;
+                padding-bottom: 1rem;
+            }
+            
+            nav .links ul {
+                position: fixed;
+                top: 10%;
+                list-style: none;
+                overflow-y: auto;
+                overflow-x: hidden;
+            }
+            
+            .nav-link {
+                text-transform: capitalize;
+                text-decoration: none;
+                display: block;
+                color: black;
+                font-size: large;
+                margin-bottom: 3rem;
+                margin-top: 1rem;
+            }
+            
+            main {
+                margin-left: 30%;
+                border-left: 2px solid #ddd;
+                padding-left: 1rem;
+            }
+            
+            main p {
+                color: rgb(56, 55, 55);
+            }
+            
+            main header {
+                font-size: 1.5rem;
+                padding: 0.5rem;
+                font-weight: 700;
+            }
+            
+            .code {
+                color: rgb(22, 160, 56);
+            }
+            
+            #help {
+                font-size: 3rem;
+                display: none;
+            }
+            
+            @media(min-width:760px) and (max-width:1007px) {
+                #navbar {
+                    width: 30%;
+                }
+                main {
+                    margin-left: 30%;
+                }
+            }
+            
+            @media(max-width:760px) {
+                main {
+                    margin-left: 0;
+                    border-left: none;
+                }
+                nav {
+                    display: none;
+                }
+            }
+            
+            @media(min-width:760px) and (max-width:979px) {
+                main {
+                    margin-left: 35%;
+                }
+            }

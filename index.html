@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Technical documentation page</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <nav id="navbar">
+        <span id="help">👨‍🦽 </span>
+        <header id="title">
+            <h1>
+                Python Documentation
+            </h1>
+        </header>
+        <div class="links">
+            <ul>
+                <li><a href="#what's_new_in_python_3.8" class="nav-link">
+                   What's New in Python 3.8
+               </a></li>
+                <li><a href="#summary_release_highlights" class="nav-link">
+                   summary Release highlights
+                   </a>
+                </li>
+
+                <li><a href="#assignment_expressions" class="nav-link">
+                   Assignment expressions
+               </a></li>
+                <li><a href="#positional-only_parameters" class="nav-link">
+                   positional-only parameters
+               </a></li>
+                <li><a href="#python_runtime_audit_hooks" class="nav-link">
+                   python runtime audit hooks
+               </a></li>
+                <li><a href="#python_initialization_configuration" class="nav-link">
+                   Python Initialization Configuration
+               </a></li>
+                <li><a href="#new_modules" class="nav-link">
+                 New Modules
+               </a></li>
+                <li><a href="#improved_modules" class="nav-link">
+                 Improved Modules
+               </a></li>
+                <li><a href="#reference" class="nav-link">
+                 reference
+               </a></li>
+            </ul>
+        </div>
+    </nav>
+    <main id="main-doc">
+        <section class="main-section" id="what's_new_in_python_3.8">
+            <header>
+
+                What's New in Python 3.8
+
+            </header>
+            <p>
+                This article explains the new features in Python 3.8, compared to 3.7. For full details, see the changelog. Python 3.8 was released on October 14th, 2019.
+
+            </p>
+        </section>
+        <section class="main-section" id="summary_release_highlights">
+            <header>
+                Summary Release highlights
+            </header>
+        </section>
+        <section class="main-section" id="assignment_expressions">
+            <header>
+                Assignment Expressions
+            </header>
+            <p>
+                There is new syntax := that assigns values to variables as part of a larger expression. It is affectionately known as “the walrus operator” due to its resemblance to the eyes and tusks of a walrus.
+            </p>
+            <p>
+                In this example, the assignment expression helps avoid calling <code style="color: blue;" lang="py">len()</code> twice:
+            </p>
+            <code lang="py" class="code">
+                if (n := len(a)) > 10: 
+                print(f"List is too long ({n} elements, expected <= 10)")
+            </code>
+            <p>
+                A similar benefit arises during regular expression matching where match objects are needed twice, once to test whether a match occurred and another to extract a subgroup:
+            </p>
+            <code lang="py" class="code">
+                discount = 0.0
+                if (mo := re.search(r'(\d+)% discount', advertisement)):
+                discount = float(mo.group(1)) / 100.0
+            </code>
+            <p>
+                The operator is also useful with while-loops that compute a value to test loop termination and then need that same value again in the body of the loop:
+            </p>
+            <code class="code">
+                # Loop over fixed length blocks
+                while (block := f.read(256)) != '':
+                process(block)
+
+            </code>
+        </section>
+        <section class="main-section" id="positional-only_parameters">
+            <header>
+                Positional-only parameters
+            </header>
+            <p>
+                There is a new function parameter syntax <code style="color: blue;">  /  </code>to indicate that some function parameters must be specified positionally and cannot be used as keyword arguments. This is the same notation shown by
+                <code style="color:blue;" lang="py"> help() </code>for C functions annotated with Larry Hastings’ Argument Clinic tool.
+            </p>
+            <p>
+                In the following example, parameters a and b are positional-only, while c or d can be positional or keyword, and e or f are required to be keywords
+            </p>
+            <code class="code" lang="py">
+                def f(a, b, /, c, d, *, e, f):
+                print(a, b, c, d, e, f)
+
+            </code>
+            <p>
+                The following is a valid call:
+            </p>
+            <code class="code" lang="py">
+                f(10, 20, 30, d=40, e=50, f=60)
+
+            </code>
+            <p>
+                However, these are invalid calls:
+            </p>
+            <code class="code" lang="py">
+f(10, b=20, c=30, d=40, e=50, f=60)   # b cannot be a keyword argument
+f(10, 20, 30, 40, 50, f=60)           # e must be a keyword argument
+            </code>
+        </section>
+        <section class="main-section" id="python_runtime_audit_hooks">
+            <header>
+                Python Runtime Audit Hooks
+            </header>
+            <div>
+                <p>
+                    The PEP adds an Audit Hook and Verified Open Hook. Both are available from Python and native code, allowing applications and frameworks written in pure Python code to take advantage of extra notifications, while also allowing embedders or system administrators
+                    to deploy builds of Python where auditing is always enabled.
+                </p>
+            </div>
+        </section>
+        <section class="main-section" id="python_initialization_configuration">
+            <header>Python Initialization Configuration</header>
+            <div>
+                <p>
+
+                    The PEP 587 adds a new C API to configure the Python Initialization providing finer control on the whole configuration and better error reporting.
+                </p>
+                <h3>New structures:</h3>
+                <ul>
+                    <li>PyConfig</li>
+                    <li>PyPreConfig</li>
+                    <li>PyStatus</li>
+                    <li>PyWideStringList</li>
+
+                </ul>
+                <h3>New functions:</h3>
+                <ul>
+                    <li><code>PyConfig_Clear()</code></li>
+                    <li><code>PyConfig_InitIsolatedConfig()</code></li>
+                    <li><code>PyConfig_InitPythonConfig()</code></li>
+                    <li><code>PyConfig_Read()</code></li>
+                    <li><code>PyConfig_SetArgv()</code></li>
+
+                </ul>
+            </div>
+        </section>
+        <section class="main-section" id="new_modules">
+            <header>New Modules</header>
+            <div>
+                <p>
+                    The new importlib.metadata module provides (provisional) support for reading metadata from third-party packages. For example, it can extract an installed package’s version number, list of entry points, and more:
+                </p>
+            </div>
+        </section>
+        <section class="main-section" id="improved_modules">
+            <header>Improved Modules</header>
+            <div>
+
+                <p>
+
+
+                    New function <code>
+                    ast.get_source_segment() </code> returns the source code for a specific AST node.
+
+                </p>
+            </div>
+        </section>
+        <section class="main-section" id="reference">
+            <header>Reference</header>
+            <p>Visit <a href="https://www.python.org" target="_blank">here</a> for more.</p>
+        </section>
+    </main>
+    <script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
+</body>
+
+</html>
